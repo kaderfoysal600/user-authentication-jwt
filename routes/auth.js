@@ -102,7 +102,7 @@ router.get("/allUser", async (req, res) => {
 });
 
 // Update User
-router.put("/:id", (req, res) => {
+router.put("/update/:id", (req, res) => {
   const { username, gender, dob } = req.body;
   const result = authModelSchema
     .findByIdAndUpdate(
@@ -134,9 +134,10 @@ router.put("/:id", (req, res) => {
 });
 
 // DELETE User
-router.delete("/:id", (req, res) => {
+router.delete("/delete/:id", (req, res) => {
   authModelSchema.deleteOne({ _id: req.params.id }, (err) => {
     if (err) {
+      console.log(err);
       res.status(500).json({
         error: "There was a server side error!",
       });
